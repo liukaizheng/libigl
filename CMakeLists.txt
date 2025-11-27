@@ -6,7 +6,7 @@ else()
     set(LIBIGL_TOPLEVEL_PROJECT OFF)
 endif()
 
-
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Check required CMake version
 set(REQUIRED_CMAKE_VERSION "3.16.0")
@@ -88,18 +88,18 @@ if(LIBIGL_TOPLEVEL_PROJECT AND (NOT APPLE) AND UNIX)
 endif()
 
 # Build tests and tutorials
-option(LIBIGL_BUILD_TESTS      "Build libigl unit test"                ${LIBIGL_TOPLEVEL_PROJECT})
+option(LIBIGL_BUILD_TESTS      "Build libigl unit test"                OFF)
 option(LIBIGL_BUILD_TUTORIALS  "Build libigl tutorial"                 ${LIBIGL_TOPLEVEL_PROJECT})
-option(LIBIGL_INSTALL          "Enable installation of libigl targets" ${LIBIGL_TOPLEVEL_PROJECT})
+option(LIBIGL_INSTALL          "Enable installation of libigl targets" OFF)
 
 # USE_STATIC_LIBRARY speeds up the generation of multiple binaries,
 # at the cost of a longer initial compilation time
 # (by default, static build is off since libigl is a header-only library)
-option(LIBIGL_USE_STATIC_LIBRARY "Use libigl as static library" ${LIBIGL_TOPLEVEL_PROJECT})
+option(LIBIGL_USE_STATIC_LIBRARY "Use libigl as static library" OFF)
 
 # Permissive modules. These modules are available under MPL2 license, and their dependencies are available
 # under a permissive or public domain license.
-option(LIBIGL_EMBREE           "Build target igl::embree"           ${LIBIGL_TOPLEVEL_PROJECT})
+option(LIBIGL_EMBREE           "Build target igl::embree"           OFF)
 option(LIBIGL_GLFW             "Build target igl::glfw"             ${LIBIGL_TOPLEVEL_PROJECT})
 option(LIBIGL_IMGUI            "Build target igl::imgui"            ${LIBIGL_TOPLEVEL_PROJECT})
 option(LIBIGL_OPENGL           "Build target igl::opengl"           ${LIBIGL_TOPLEVEL_PROJECT})
@@ -112,19 +112,19 @@ option(LIBIGL_XML              "Build target igl::xml"              ${LIBIGL_TOP
 # available under a copyleft license.
 option(LIBIGL_COPYLEFT_CORE    "Build target igl_copyleft::core"    ${LIBIGL_TOPLEVEL_PROJECT})
 option(LIBIGL_COPYLEFT_CGAL    "Build target igl_copyleft::cgal"    ${LIBIGL_DEFAULT_CGAL})
-option(LIBIGL_COPYLEFT_COMISO  "Build target igl_copyleft::comiso"  ${LIBIGL_TOPLEVEL_PROJECT})
+option(LIBIGL_COPYLEFT_COMISO  "Build target igl_copyleft::comiso"  OFF)
 option(LIBIGL_COPYLEFT_TETGEN  "Build target igl_copyleft::tetgen"  ${LIBIGL_TOPLEVEL_PROJECT})
 
 # Restricted modules. These modules are available under MPL2 license, but their dependencies are
 # only available under a non-commercial or proprietary license.
-option(LIBIGL_RESTRICTED_MATLAB   "Build target igl_restricted::matlab"   ${LIBIGL_DEFAULT_MATLAB})
-option(LIBIGL_RESTRICTED_MOSEK    "Build target igl_restricted::mosek"    ${LIBIGL_DEFAULT_MOSEK})
+option(LIBIGL_RESTRICTED_MATLAB   "Build target igl_restricted::matlab"   OFF)
+option(LIBIGL_RESTRICTED_MOSEK    "Build target igl_restricted::mosek"    OFF)
 option(LIBIGL_RESTRICTED_TRIANGLE "Build target igl_restricted::triangle" ${LIBIGL_TOPLEVEL_PROJECT})
 
 # GLFW doesn't run on headless CI machines so don't run (or build them).
 # Unfortunately on headless mac machines glfw seems to hang rather than crash
 # making it hard to catch at runtime.
-option(LIBIGL_GLFW_TESTS       "Build igl::glfw tests"             ${LIBIGL_TOPLEVEL_PROJECT})
+option(LIBIGL_GLFW_TESTS       "Build igl::glfw tests"             OFF)
 
 option(LIBIGL_WARNINGS_AS_ERRORS "Turn on many warnings and treat as errors" OFF)
 
@@ -186,4 +186,3 @@ if(LIBIGL_INSTALL)
     write_basic_package_version_file("${version_config_file}" COMPATIBILITY SameMajorVersion)
     install(FILES "${project_config_out}" "${version_config_file}" DESTINATION "${export_dest_dir}")
 endif()
-
