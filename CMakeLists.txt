@@ -99,7 +99,8 @@ option(LIBIGL_USE_STATIC_LIBRARY "Use libigl as static library" OFF)
 
 # Permissive modules. These modules are available under MPL2 license, and their dependencies are available
 # under a permissive or public domain license.
-option(LIBIGL_EMBREE           "Build target igl::embree"           OFF)
+option(LIBIGL_CYCODEBASE       "Build target igl::cycodebase"       ${LIBIGL_TOPLEVEL_PROJECT})
+option(LIBIGL_EMBREE           "Build target igl::embree"           ${LIBIGL_TOPLEVEL_PROJECT})
 option(LIBIGL_GLFW             "Build target igl::glfw"             ${LIBIGL_TOPLEVEL_PROJECT})
 option(LIBIGL_IMGUI            "Build target igl::imgui"            ${LIBIGL_TOPLEVEL_PROJECT})
 option(LIBIGL_OPENGL           "Build target igl::opengl"           ${LIBIGL_TOPLEVEL_PROJECT})
